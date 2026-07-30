@@ -4,75 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barangay Management System - Admin Login</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Link External CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4">
+<body>
 
-  <div class="bg-white rounded-xl shadow-lg w-full max-w-md overflow-hidden border border-slate-200">
+  <div class="login-card">
     
     <!-- Header Section -->
-    <div class="bg-sky-900 text-white p-6 text-center relative">
-      <div class="w-20 h-20 bg-sky-100 rounded-full mx-auto mb-3 flex items-center justify-center text-sky-600 border-4 border-sky-400 shadow-inner">
+    <div class="card-header">
+      <div class="logo-wrapper">
         <!-- Water Drop Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-current" viewBox="0 0 24 24">
+        <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon" viewBox="0 0 24 24">
           <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
         </svg>
       </div>
-      <p class="text-xs text-sky-200 mt-1">Barangay Water  System Association</p>
+      <h2 class="card-title">ADMINISTRATOR PORTAL</h2>
+      <p class="card-subtitle">Barangay Water System Association</p>
     </div>
 
     <!-- Alert Box for Error Messages -->
-    <div id="errorMessage" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-3 mx-6 mt-4 text-xs rounded">
+    <div id="errorMessage" class="alert-error hidden">
       Invalid username or password.
     </div>
 
     <!-- Login Form -->
-    <form id="loginForm" class="p-6 space-y-4" onsubmit="handleLogin(event)">
+    <form id="loginForm" class="login-form">
       
       <!-- Username Input -->
-      <div>
-        <label for="username" class="block text-sm font-medium text-slate-700 mb-1">Admin Username</label>
-        <input type="text" id="username" placeholder="Enter admin username" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-600 text-sm">
+      <div class="form-group">
+        <label for="username" class="form-label">Admin Username</label>
+        <input type="text" id="username" class="form-input" placeholder="Enter admin username" required>
       </div>
 
       <!-- Password Input -->
-      <div>
-        <label for="password" class="block text-sm font-medium text-slate-700 mb-1">Password</label>
-        <input type="password" id="password" placeholder="••••••••" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-600 text-sm">
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+      </div>
+
+      <!-- Demo Credentials Helper -->
+      <div class="demo-helper">
+        <p class="demo-title">Demo Admin Credentials:</p>
+        <p>Username: <code class="code-badge">admin</code></p>
+        <p>Password: <code class="code-badge">admin123</code></p>
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="w-full bg-sky-700 hover:bg-sky-800 text-white font-medium py-2.5 rounded-lg text-sm transition duration-150 shadow-md">
+      <button type="submit" class="btn-submit">
         Login to Dashboard
       </button>
     </form>
 
     <!-- Footer -->
-    <div class="bg-slate-50 px-6 py-3 border-t border-slate-100 text-center text-xs text-slate-500">
+    <div class="card-footer">
       Restricted Access &bull; Authorized Personnel Only
     </div>
 
   </div>
 
-  <script>
-    function handleLogin(event) {
-      event.preventDefault();
-      
-      const usernameInput = document.getElementById('username').value.trim();
-      const passwordInput = document.getElementById('password').value.trim();
-      const errorMessage = document.getElementById('errorMessage');
-
-      // Admin Authentication Check
-      if (usernameInput === 'admin' && passwordInput === 'admin123') {
-        errorMessage.classList.add('hidden');
-        alert('Access Granted! Redirecting to Admin Dashboard...');
-      } else {
-        errorMessage.classList.remove('hidden');
-      }
-    }
-  </script>
+  <!-- Link External JS Script -->
+  <script src="script.js"></script>
 
 </body>
 </html>
-

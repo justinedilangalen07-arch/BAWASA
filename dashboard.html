@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Barangay Water System</title>
+  
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-wrapper-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon-sm" viewBox="0 0 24 24">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+        </svg>
+      </div>
+      <div>
+        <h3 class="brand-title">BWSA Admin</h3>
+        <p class="brand-sub">Water System Portal</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-menu">
+      <a href="#" class="nav-item active">
+        <span>📊 Overview</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span>👥 Consumer Accounts</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span>💧 Meter Readings</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span>💳 Billing & Payments</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span>⚙️ System Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="logoutBtn" class="btn-logout">
+        🚪 Log Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="dashboard-main">
+    
+    <!-- Top Header -->
+    <header class="top-header">
+      <div>
+        <h1 class="page-title">Dashboard Overview</h1>
+        <p class="page-sub">Welcome back, <strong id="adminName">Administrator</strong></p>
+      </div>
+      <div class="user-pill">
+        <span class="status-dot"></span>
+        <span>System Active</span>
+      </div>
+    </header>
+
+    <!-- Metrics Cards -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-label">Total Consumers</span>
+        <h2 class="metric-value">1,248</h2>
+        <span class="metric-badge positive">+12 this month</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Active Meters</span>
+        <h2 class="metric-value">1,190</h2>
+        <span class="metric-badge neutral">95.3% Operational</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Monthly Collections</span>
+        <h2 class="metric-value">₱184,250</h2>
+        <span class="metric-badge positive">₱15,000 pending</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Unresolved Reports</span>
+        <h2 class="metric-value text-danger">5</h2>
+        <span class="metric-badge negative">Requires Attention</span>
+      </div>
+    </section>
+
+    <!-- Data Table Section -->
+    <section class="table-container">
+      <div class="table-header">
+        <h3 class="table-title">Recent Water Billing Transactions</h3>
+        <button class="btn-primary-sm">+ New Reading Entry</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Account #</th>
+              <th>Consumer Name</th>
+              <th>Zone/Purok</th>
+              <th>Consumption (m³)</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#BWSA-00101</td>
+              <td>Juan Dela Cruz</td>
+              <td>Purok 1 - Mabini</td>
+              <td>18 m³</td>
+              <td>₱360.00</td>
+              <td><span class="badge badge-success">Paid</span></td>
+              <td><button class="btn-action">View</button></td>
+            </tr>
+            <tr>
+              <td>#BWSA-00102</td>
+              <td>Maria Santos</td>
+              <td>Purok 3 - Rizal</td>
+              <td>24 m³</td>
+              <td>₱480.00</td>
+              <td><span class="badge badge-warning">Pending</span></td>
+              <td><button class="btn-action">Collect</button></td>
+            </tr>
+            <tr>
+              <td>#BWSA-00103</td>
+              <td>Antonio Luna</td>
+              <td>Purok 2 - Bonifacio</td>
+              <td>31 m³</td>
+              <td>₱620.00</td>
+              <td><span class="badge badge-danger">Overdue</span></td>
+              <td><button class="btn-action">Notify</button></td>
+            </tr>
+            <tr>
+              <td>#BWSA-00104</td>
+              <td>Elena Torralba</td>
+              <td>Purok 1 - Mabini</td>
+              <td>15 m³</td>
+              <td>₱300.00</td>
+              <td><span class="badge badge-success">Paid</span></td>
+              <td><button class="btn-action">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+</html>

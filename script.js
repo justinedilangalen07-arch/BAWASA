@@ -1,29 +1,37 @@
-// Wait until the page is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById("loginForm");
-    const errorMessage = document.getElementById("errorMessage");
+  const loginForm = document.getElementById("loginForm");
+  const errorMessage = document.getElementById("errorMessage");
+  const logoutBtn = document.getElementById("logoutBtn");
 
+  // Handle Login Event (if on index.html)
+  if (loginForm) {
     loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+      event.preventDefault();
 
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-        // Hide previous error
-        errorMessage.classList.add("hidden");
+      errorMessage.classList.add("hidden");
 
-        // Admin credentials
-        const ADMIN_USERNAME = "admin";
-        const ADMIN_PASSWORD = "admin123";
+      const ADMIN_USERNAME = "admin";
+      const ADMIN_PASSWORD = "admin123";
 
-        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-            alert("Access Granted! Redirecting to Admin Dashboard...");
-
-            // Redirect to dashboard
-            window.location.href = "dashboard.html";
-        } else {
-            errorMessage.textContent = "Invalid username or password.";
-            errorMessage.classList.remove("hidden");
-        }
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        // Save simple session state
+        sessionStorage.setItem("isLoggedIn", "true");
+        window.location.href = "dashboard.html";
+      } else {
+        errorMessage.textContent = "Invalid username or password.";
+        errorMessage.classList.remove("hidden");
+      }
     });
+  }
+
+  // Handle Logout Event (if on dashboard.html)
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      sessionStorage.removeItem("isLoggedIn");
+      window.location.href = "index.html";
+    });
+  }
 });
