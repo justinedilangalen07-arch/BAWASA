@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BWSA - Payment Processing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2>BWSA Admin</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="payments.html" class="active">Payments</a></li>
+      <li><button id="logoutBtn" class="btn-logout">Logout</button></li>
+    </ul>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <header>
+      <h1>Payment Processing</h1>
+      <p>Record consumer payments and generate official receipts.</p>
+    </header>
+
+    <div class="container">
+      <!-- Unpaid Bills Table -->
+      <section class="card">
+        <h3>Pending & Overdue Bills</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Account No</th>
+              <th>Consumer Name</th>
+              <th>Purok / Zone</th>
+              <th>Consumption</th>
+              <th>Total Due</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="unpaidBillsBody">
+            <!-- Dynamic rows populated via script.js -->
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+
+  <!-- Payment Confirmation & Receipt Modal -->
+  <div id="paymentModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModalBtn" class="close-btn">&times;</span>
+      
+      <!-- Payment Form View -->
+      <div id="paymentFormView">
+        <h2>Process Payment</h2>
+        <hr><br>
+        <p><strong>Account No:</strong> <span id="payAccountNo"></span></p>
+        <p><strong>Consumer:</strong> <span id="payConsumerName"></span></p>
+        <p><strong>Total Amount Due:</strong> ₱<span id="payAmountDue"></span></p>
+        <br>
+        <button id="confirmPayBtn" class="btn-primary">Confirm Payment</button>
+      </div>
+
+      <!-- Printable Receipt View -->
+      <div id="receiptView" class="hidden printable-receipt">
+        <div style="text-align: center;">
+          <h3>BARANGAY WATER SYSTEM ASSOCIATION</h3>
+          <p>Official Water Bill Receipt</p>
+          <p>----------------------------------------</p>
+        </div>
+        <p><strong>OR Number:</strong> <span id="recOR"></span></p>
+        <p><strong>Date:</strong> <span id="recDate"></span></p>
+        <p><strong>Account No:</strong> <span id="recAccount"></span></p>
+        <p><strong>Consumer:</strong> <span id="recName"></span></p>
+        <p><strong>Purok/Zone:</strong> <span id="recPurok"></span></p>
+        <p><strong>Consumption:</strong> <span id="recConsumption"></span> m³</p>
+        <p>----------------------------------------</p>
+        <h4><strong>Total Paid: ₱<span id="recAmount"></span></strong></h4>
+        <p>----------------------------------------</p>
+        <br>
+        <button onclick="window.print()" class="btn-primary no-print">🖨️ Print Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

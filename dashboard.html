@@ -182,3 +182,42 @@
 
 </body>
 </html>
+<!-- ======================================================================= -->
+<!-- PAYMENT & RECEIPT MODAL -->
+<!-- ======================================================================= -->
+<div id="paymentModal" class="modal hidden">
+  <div class="modal-content">
+    <span id="closeModalBtn" class="close-btn">&times;</span>
+    
+    <!-- Payment Form View -->
+    <div id="paymentFormView">
+      <h2>Process Water Bill Payment</h2>
+      <hr><br>
+      <p><strong>Account No:</strong> <span id="payAccountNo"></span></p>
+      <p><strong>Consumer:</strong> <span id="payConsumerName"></span></p>
+      <p><strong>Total Amount Due:</strong> ₱<span id="payAmountDue"></span></p>
+      <br>
+      <button id="confirmPayBtn" class="btn-primary">Confirm & Receive Payment</button>
+    </div>
+
+    <!-- Printable Receipt View -->
+    <div id="receiptView" class="hidden printable-receipt">
+      <div style="text-align: center;">
+        <h3>BARANGAY WATER SYSTEM ASSOCIATION</h3>
+        <p>Official Water Bill Receipt</p>
+        <p>----------------------------------------</p>
+      </div>
+      <p><strong>OR Number:</strong> <span id="recOR"></span></p>
+      <p><strong>Date:</strong> <span id="recDate"></span></p>
+      <p><strong>Account No:</strong> <span id="recAccount"></span></p>
+      <p><strong>Consumer:</strong> <span id="recName"></span></p>
+      <p><strong>Purok/Zone:</strong> <span id="recPurok"></span></p>
+      <p><strong>Consumption:</strong> <span id="recConsumption"></span> m³</p>
+      <p>----------------------------------------</p>
+      <h4><strong>Total Paid: ₱<span id="recAmount"></span></strong></h4>
+      <p>----------------------------------------</p>
+      <br>
+      <button onclick="window.print()" class="btn-primary no-print">🖨️ Print Receipt</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "name": "bawasa",
+  "version": "1.0.0",
+  "description": "hiii",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinedilangalen07-arch/BAWASA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/justinedilangalen07-arch/BAWASA/issues"
+  },
+  "homepage": "https://github.com/justinedilangalen07-arch/BAWASA#readme",
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "sqlite3": "^6.0.1"
+  }
+}

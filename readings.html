@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BWSA - Meter Readings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <h2>BWSA Admin</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="payments.html">Payments</a></li>
+      <li><a href="readings.html" class="active">Meter Readings</a></li>
+      <li><a href="consumers.html">Consumers</a></li>
+      <li><button id="logoutBtn" class="btn-logout">Logout</button></li>
+    </ul>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <header>
+      <h1>Meter Reading & Billing Engine</h1>
+      <p>Encode new monthly water consumption readings.</p>
+    </header>
+
+    <div class="container" style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+      
+      <!-- Input Reading Form -->
+      <section class="card">
+        <h3>New Reading Entry</h3>
+        <hr><br>
+        <form id="readingForm">
+          <label for="consumerSelect">Select Consumer:</label>
+          <select id="consumerSelect" required style="width: 100%; padding: 8px; margin-bottom: 12px;">
+            <option value="">-- Choose Consumer --</option>
+          </select>
+
+          <label for="prevReading">Previous Reading (m³):</label>
+          <input type="number" id="prevReading" readonly style="width: 100%; padding: 8px; margin-bottom: 12px; background: #eee;">
+
+          <label for="currReading">Current Reading (m³):</label>
+          <input type="number" id="currReading" step="0.01" required placeholder="Enter current reading" style="width: 100%; padding: 8px; margin-bottom: 12px;">
+
+          <label for="readingDate">Reading Date:</label>
+          <input type="date" id="readingDate" required style="width: 100%; padding: 8px; margin-bottom: 12px;">
+
+          <div style="background: #eef6ff; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+            <p>Consumption: <strong><span id="calcConsumption">0.00</span> m³</strong></p>
+            <p>Rate per m³: <strong>₱20.00</strong></p>
+            <h4>Total Amount: <strong>₱<span id="calcTotal">0.00</span></strong></h4>
+          </div>
+
+          <button type="submit" class="btn-primary">Submit New Reading</button>
+        </form>
+      </section>
+
+      <!-- Recent Readings Table -->
+      <section class="card">
+        <h3>Recent Monthly Readings</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Name</th>
+              <th>Purok</th>
+              <th>Consumption</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="readingsTableBody">
+            <!-- Populated via script.js -->
+          </tbody>
+        </table>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -361,3 +361,44 @@ table{
     font-size:13px;
 }
 }
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+.modal.hidden { display: none; }
+.modal-content {
+  background: white; padding: 25px; border-radius: 8px;
+  width: 380px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; }
+.btn-primary {
+  background-color: #007bff; color: white; border: none;
+  padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%;
+}
+.btn-primary:hover { background-color: #0056b3; }
+
+/* Print Mode Styling */
+@media print {
+  body * { visibility: hidden; }
+  .printable-receipt, .printable-receipt * { visibility: visible; }
+  .printable-receipt { position: absolute; left: 0; top: 0; width: 100%; }
+  .no-print { display: none; }
+}
+/* Sidebar Link Visibility Fix */
+.sidebar a {
+  color: #ffffff !important;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #007bff;
+  color: #ffffff !important;
+}
