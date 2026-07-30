@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAWASA | Admin Login</title>
+
+    <title>BAWASA Management System | Admin Login</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<main class="login-container">
 
     <div class="login-card">
 
@@ -19,19 +17,18 @@
 
             <div class="logo-wrapper">
 
-                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="logo-icon"
+                     viewBox="0 0 24 24"
+                     fill="currentColor">
 
-                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0L12 2.69z"/>
+                    <path d="M12 2.69L17.66 8.35A8 8 0 1 1 6.34 8.35L12 2.69Z"/>
 
                 </svg>
 
             </div>
 
-            <h1 class="card-title">
-                BAWASA ADMIN
-            </h1>
+            <h1 class="card-title">BAWASA</h1>
 
             <p class="card-subtitle">
                 Barangay Water System Association
@@ -49,7 +46,7 @@
 
             <div class="form-group">
 
-                <label for="username" class="form-label">
+                <label for="username">
                     Username
                 </label>
 
@@ -57,7 +54,6 @@
                     type="text"
                     id="username"
                     name="username"
-                    class="form-input"
                     placeholder="Enter username"
                     autocomplete="username"
                     required>
@@ -66,7 +62,7 @@
 
             <div class="form-group">
 
-                <label for="password" class="form-label">
+                <label for="password">
                     Password
                 </label>
 
@@ -74,32 +70,27 @@
                     type="password"
                     id="password"
                     name="password"
-                    class="form-input"
                     placeholder="Enter password"
                     autocomplete="current-password"
                     required>
 
             </div>
 
-            <button type="submit" class="btn-submit">
+            <button type="submit" class="btn-primary login-btn">
                 Login
             </button>
 
         </form>
 
+
         <!-- Footer -->
-
         <div class="card-footer">
-
-            Restricted Access • Authorized Personnel Only
-
+            © 2026 BAWASA Management System
         </div>
 
     </div>
 
-</main>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

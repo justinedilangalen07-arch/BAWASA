@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAWASA Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>BAWASA</h2>
+
+        <ul>
+            <li><a href="dashboard.html">🏠 Dashboard</a></li>
+            <li><a href="residents.html">👥 Residents</a></li>
+            <li><a href="consumers.html">💧 Water Consumers</a></li>
+            <li><a href="billing.html">🧾 Billing</a></li>
+            <li><a href="payments.html">💵 Payments</a></li>
+            <li><a href="reports.html">📊 Reports</a></li>
+            <li><a href="settings.html">⚙ Settings</a></li>
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <div class="topbar">
+
+            <h1>Admin Dashboard</h1>
+
+            <button id="logoutBtn" class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Consumers</h3>
+                <h2>520</h2>
+            </div>
+
+            <div class="card">
+                <h3>Monthly Collection</h3>
+                <h2>₱185,000</h2>
+            </div>
+
+            <div class="card">
+                <h3>Pending Bills</h3>
+                <h2>45</h2>
+            </div>
+
+            <div class="card">
+                <h3>Paid This Month</h3>
+                <h2>475</h2>
+            </div>
+
+        </div>
+
+        <!-- Recent Payments -->
+        <div class="table-container">
+
+            <h2>Recent Payments</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Receipt No.</th>
+                        <th>Account No.</th>
+                        <th>Consumer Name</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>RC001</td>
+                        <td>1001</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>2026-07-30</td>
+                        <td>₱650</td>
+                        <td class="paid">Paid</td>
+                    </tr>
+
+                    <tr>
+                        <td>RC002</td>
+                        <td>1002</td>
+                        <td>Maria Santos</td>
+                        <td>2026-07-29</td>
+                        <td>₱780</td>
+                        <td class="paid">Paid</td>
+                    </tr>
+
+                    <tr>
+                        <td>RC003</td>
+                        <td>1003</td>
+                        <td>Pedro Reyes</td>
+                        <td>2026-07-28</td>
+                        <td>₱500</td>
+                        <td class="pending">Pending</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    logoutBtn.addEventListener("click", () => {
+
+        localStorage.removeItem("isLoggedIn");
+
+        window.location.href = "index.html";
+
+    });
+</script>
+
+</body>
+</html>
+<!-- ======================================================================= -->
+<!-- PAYMENT & RECEIPT MODAL -->
+<!-- ======================================================================= -->
+<div id="paymentModal" class="modal hidden">
+  <div class="modal-content">
+    <span id="closeModalBtn" class="close-btn">&times;</span>
+    
+    <!-- Payment Form View -->
+    <div id="paymentFormView">
+      <h2>Process Water Bill Payment</h2>
+      <hr><br>
+      <p><strong>Account No:</strong> <span id="payAccountNo"></span></p>
+      <p><strong>Consumer:</strong> <span id="payConsumerName"></span></p>
+      <p><strong>Total Amount Due:</strong> ₱<span id="payAmountDue"></span></p>
+      <br>
+      <button id="confirmPayBtn" class="btn-primary">Confirm & Receive Payment</button>
+    </div>
+
+    <!-- Printable Receipt View -->
+    <div id="receiptView" class="hidden printable-receipt">
+      <div style="text-align: center;">
+        <h3>BARANGAY WATER SYSTEM ASSOCIATION</h3>
+        <p>Official Water Bill Receipt</p>
+        <p>----------------------------------------</p>
+      </div>
+      <p><strong>OR Number:</strong> <span id="recOR"></span></p>
+      <p><strong>Date:</strong> <span id="recDate"></span></p>
+      <p><strong>Account No:</strong> <span id="recAccount"></span></p>
+      <p><strong>Consumer:</strong> <span id="recName"></span></p>
+      <p><strong>Purok/Zone:</strong> <span id="recPurok"></span></p>
+      <p><strong>Consumption:</strong> <span id="recConsumption"></span> m³</p>
+      <p>----------------------------------------</p>
+      <h4><strong>Total Paid: ₱<span id="recAmount"></span></strong></h4>
+      <p>----------------------------------------</p>
+      <br>
+      <button onclick="window.print()" class="btn-primary no-print">🖨️ Print Receipt</button>
+    </div>
+  </div>
+</div>

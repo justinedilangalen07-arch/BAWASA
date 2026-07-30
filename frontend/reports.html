@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAWASA - Reports</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>BAWASA</h2>
+
+        <ul>
+            <li><a href="dashboard.html">🏠 Dashboard</a></li>
+            <li><a href="residents.html">👥 Residents</a></li>
+            <li><a href="consumers.html">💧 Water Consumers</a></li>
+            <li><a href="billing.html">🧾 Billing</a></li>
+            <li><a href="payments.html">💵 Payments</a></li>
+            <li><a href="reports.html">📊 Reports</a></li>
+            <li><a href="settings.html">⚙ Settings</a></li>
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>Reports</h1>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Consumers</h3>
+                <h2>520</h2>
+            </div>
+
+            <div class="card">
+                <h3>Total Collection</h3>
+                <h2>₱185,000</h2>
+            </div>
+
+            <div class="card">
+                <h3>Pending Bills</h3>
+                <h2>45</h2>
+            </div>
+
+            <div class="card">
+                <h3>Paid Bills</h3>
+                <h2>475</h2>
+            </div>
+
+        </div>
+
+        <!-- Monthly Collection Report -->
+        <div class="table-container">
+
+            <h2>Monthly Collection Report</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Total Bills</th>
+                        <th>Total Payments</th>
+                        <th>Collection Rate</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>January</td>
+                        <td>₱150,000</td>
+                        <td>₱145,000</td>
+                        <td>96.67%</td>
+                    </tr>
+
+                    <tr>
+                        <td>February</td>
+                        <td>₱160,000</td>
+                        <td>₱155,000</td>
+                        <td>96.88%</td>
+                    </tr>
+
+                    <tr>
+                        <td>March</td>
+                        <td>₱170,000</td>
+                        <td>₱165,000</td>
+                        <td>97.06%</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <!-- Export Buttons -->
+        <div class="card">
+
+            <h2>Export Reports</h2>
+
+            <br>
+
+            <button class="btn-primary" onclick="exportPDF()">
+                Export PDF
+            </button>
+
+            <button class="btn-primary" onclick="exportExcel()">
+                Export Excel
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+function exportPDF() {
+    alert("PDF Export Feature Coming Soon!");
+}
+
+function exportExcel() {
+    alert("Excel Export Feature Coming Soon!");
+}
+
+</script>
+
+</body>
+</html>

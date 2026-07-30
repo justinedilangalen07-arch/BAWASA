@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAWASA - Billing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>BAWASA</h2>
+
+        <ul>
+            <li><a href="dashboard.html">🏠 Dashboard</a></li>
+            <li><a href="residents.html">👥 Residents</a></li>
+            <li><a href="consumers.html">💧 Water Consumers</a></li>
+            <li><a href="billing.html">🧾 Billing</a></li>
+            <li><a href="payments.html">💵 Payments</a></li>
+            <li><a href="reports.html">📊 Reports</a></li>
+            <li><a href="settings.html">⚙ Settings</a></li>
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>Billing Management</h1>
+        </div>
+
+        <!-- Billing Form -->
+        <div class="card">
+
+            <h2>Create Bill</h2>
+
+            <form id="billingForm">
+
+                <input
+                    type="text"
+                    id="accountNo"
+                    placeholder="Account Number"
+                    required>
+
+                <input
+                    type="text"
+                    id="consumerName"
+                    placeholder="Consumer Name"
+                    required>
+
+                <input
+                    type="number"
+                    id="previousReading"
+                    placeholder="Previous Reading"
+                    required>
+
+                <input
+                    type="number"
+                    id="currentReading"
+                    placeholder="Current Reading"
+                    required>
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+                    Generate Bill
+                </button>
+
+            </form>
+
+        </div>
+
+        <br>
+
+        <!-- Billing Table -->
+        <div class="table-container">
+
+            <h2>Billing Records</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Account No.</th>
+                        <th>Consumer</th>
+                        <th>Previous</th>
+                        <th>Current</th>
+                        <th>Consumption</th>
+                        <th>Bill Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="billingTable">
+
+                    <tr>
+                        <td>1001</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>120</td>
+                        <td>140</td>
+                        <td>20 m³</td>
+                        <td>₱500</td>
+                        <td class="pending">Pending</td>
+                        <td>
+                            <button onclick="deleteRow(this)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+const WATER_RATE = 25;
+
+document.getElementById("billingForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let accountNo =
+        document.getElementById("accountNo").value;
+
+    let consumerName =
+        document.getElementById("consumerName").value;
+
+    let previous =
+        parseFloat(document.getElementById("previousReading").value);
+
+    let current =
+        parseFloat(document.getElementById("currentReading").value);
+
+    if(current < previous){
+        alert("Current reading cannot be less than previous reading.");
+        return;
+    }
+
+    let consumption = current - previous;
+
+    let billAmount = consumption * WATER_RATE;
+
+    let row = `
+        <tr>
+            <td>${accountNo}</td>
+            <td>${consumerName}</td>
+            <td>${previous}</td>
+            <td>${current}</td>
+            <td>${consumption} m³</td>
+            <td>₱${billAmount.toFixed(2)}</td>
+            <td class="pending">Pending</td>
+            <td>
+                <button onclick="deleteRow(this)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    `;
+
+    document.getElementById("billingTable")
+    .insertAdjacentHTML("beforeend", row);
+
+    document.getElementById("billingForm").reset();
+
+});
+
+function deleteRow(button){
+    button.parentElement.parentElement.remove();
+}
+
+</script>
+
+</body>
+</html>

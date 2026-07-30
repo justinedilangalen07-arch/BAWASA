@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   const errorMessage = document.getElementById("errorMessage");
@@ -102,6 +103,55 @@ async function loadDashboardData() {
       metricValues[2].textContent = `₱${metrics.collections.toLocaleString()}`;
       metricValues[3].textContent = metrics.overdueCount;
     }
+=======
+// BAWASA Login System
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const loginForm = document.getElementById("loginForm");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const errorMessage = document.getElementById("errorMessage");
+
+    loginForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // Demo Admin Account
+        const adminUsername = "admin";
+        const adminPassword = "admin123";
+
+        if (
+            username === adminUsername &&
+            password === adminPassword
+        ) {
+
+            // Hide error message
+            errorMessage.classList.add("hidden");
+
+            // Save login session
+            localStorage.setItem("isLoggedIn", "true");
+
+            // Redirect to dashboard
+            window.location.href = "dashboard.html";
+
+        } else {
+
+            // Show error
+            errorMessage.classList.remove("hidden");
+
+            // Clear password
+            passwordInput.value = "";
+
+            // Focus password field
+            passwordInput.focus();
+        }
+
+    });
+>>>>>>> 76f43817e151f6927c16d73a9ee061f9c3094c6e
 
     // C. Fetch Recent Transactions Table
     const tableRes = await fetch('/api/dashboard/transactions');

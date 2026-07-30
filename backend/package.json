@@ -1,23 +1,25 @@
 {
   "name": "bawasa",
   "version": "1.0.0",
-  "description": "hiii",
-  "main": "script.js",
+  "description": "BAWASA Water System Management System",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"No test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/justinedilangalen07-arch/BAWASA.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "water-system",
+    "billing",
+    "BAWASA"
+  ],
+  "author": "Justine Dimasu-ay",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/justinedilangalen07-arch/BAWASA/issues"
-  },
-  "homepage": "https://github.com/justinedilangalen07-arch/BAWASA#readme",
   "dependencies": {
     "body-parser": "^2.3.0",
     "cors": "^2.8.6",
