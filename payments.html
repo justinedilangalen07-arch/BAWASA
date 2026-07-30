@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAWASA - Water Consumers</title>
+    <title>BAWASA - Payments</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,24 +31,20 @@
     <main class="main-content">
 
         <div class="topbar">
-            <h1>Water Consumers</h1>
-
-            <button class="btn-primary" onclick="focusForm()">
-                + Add Consumer
-            </button>
+            <h1>Payment Management</h1>
         </div>
 
-        <!-- Consumer Form -->
+        <!-- Payment Form -->
         <div class="card">
 
-            <h2>Consumer Information</h2>
+            <h2>Record Payment</h2>
 
-            <form id="consumerForm">
+            <form id="paymentForm">
 
                 <input
                     type="text"
-                    id="consumerName"
-                    placeholder="Consumer Name"
+                    id="receiptNo"
+                    placeholder="Receipt Number"
                     required>
 
                 <input
@@ -59,18 +55,25 @@
 
                 <input
                     type="text"
-                    id="meterNo"
-                    placeholder="Meter Number"
+                    id="consumerName"
+                    placeholder="Consumer Name"
                     required>
 
-                <select id="status" required>
-                    <option value="">Select Status</option>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount Paid"
+                    required>
 
-                <button type="submit" class="btn-primary">
-                    Save Consumer
+                <input
+                    type="date"
+                    id="paymentDate"
+                    required>
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+                    Save Payment
                 </button>
 
             </form>
@@ -79,35 +82,35 @@
 
         <br>
 
-        <!-- Consumers Table -->
+        <!-- Payments Table -->
         <div class="table-container">
 
-            <h2>Consumer Records</h2>
+            <h2>Payment Records</h2>
 
             <table>
 
                 <thead>
                     <tr>
+                        <th>Receipt No.</th>
                         <th>Account No.</th>
                         <th>Consumer Name</th>
-                        <th>Meter No.</th>
+                        <th>Amount</th>
+                        <th>Date Paid</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
 
-                <tbody id="consumerTable">
+                <tbody id="paymentTable">
 
                     <tr>
+                        <td>RC001</td>
                         <td>1001</td>
                         <td>Juan Dela Cruz</td>
-                        <td>MTR-001</td>
-                        <td>Active</td>
+                        <td>₱500.00</td>
+                        <td>2026-07-30</td>
+                        <td class="paid">Paid</td>
                         <td>
-                            <button onclick="editRow(this)">
-                                Edit
-                            </button>
-
                             <button onclick="deleteRow(this)">
                                 Delete
                             </button>
@@ -126,10 +129,13 @@
 
 <script>
 
-document.getElementById("consumerForm")
+document.getElementById("paymentForm")
 .addEventListener("submit", function(e){
 
     e.preventDefault();
+
+    let receiptNo =
+        document.getElementById("receiptNo").value;
 
     let accountNo =
         document.getElementById("accountNo").value;
@@ -137,26 +143,21 @@ document.getElementById("consumerForm")
     let consumerName =
         document.getElementById("consumerName").value;
 
-    let meterNo =
-        document.getElementById("meterNo").value;
+    let amount =
+        parseFloat(document.getElementById("amount").value);
 
-    let status =
-        document.getElementById("status").value;
-
-    let table =
-        document.getElementById("consumerTable");
+    let paymentDate =
+        document.getElementById("paymentDate").value;
 
     let row = `
         <tr>
+            <td>${receiptNo}</td>
             <td>${accountNo}</td>
             <td>${consumerName}</td>
-            <td>${meterNo}</td>
-            <td>${status}</td>
+            <td>₱${amount.toFixed(2)}</td>
+            <td>${paymentDate}</td>
+            <td class="paid">Paid</td>
             <td>
-                <button onclick="editRow(this)">
-                    Edit
-                </button>
-
                 <button onclick="deleteRow(this)">
                     Delete
                 </button>
@@ -164,38 +165,15 @@ document.getElementById("consumerForm")
         </tr>
     `;
 
-    table.innerHTML += row;
+    document.getElementById("paymentTable")
+        .insertAdjacentHTML("beforeend", row);
 
-    document.getElementById("consumerForm").reset();
+    document.getElementById("paymentForm").reset();
 
 });
 
 function deleteRow(button){
     button.parentElement.parentElement.remove();
-}
-
-function editRow(button){
-
-    let row =
-        button.parentElement.parentElement;
-
-    document.getElementById("accountNo").value =
-        row.cells[0].innerText;
-
-    document.getElementById("consumerName").value =
-        row.cells[1].innerText;
-
-    document.getElementById("meterNo").value =
-        row.cells[2].innerText;
-
-    document.getElementById("status").value =
-        row.cells[3].innerText;
-
-    row.remove();
-}
-
-function focusForm(){
-    document.getElementById("consumerName").focus();
 }
 
 </script>

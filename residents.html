@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAWASA - Residents</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>BAWASA</h2>
+
+        <ul>
+            <li><a href="dashboard.html">🏠 Dashboard</a></li>
+            <li><a href="residents.html">👥 Residents</a></li>
+            <li><a href="consumers.html">💧 Water Consumers</a></li>
+            <li><a href="billing.html">🧾 Billing</a></li>
+            <li><a href="payments.html">💵 Payments</a></li>
+            <li><a href="reports.html">📊 Reports</a></li>
+            <li><a href="settings.html">⚙ Settings</a></li>
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>Residents Management</h1>
+
+            <button class="btn-primary" onclick="addResident()">
+                + Add Resident
+            </button>
+        </div>
+
+        <!-- Add Resident Form -->
+        <div class="card">
+
+            <h2>Resident Information</h2>
+
+            <form id="residentForm">
+
+                <input type="text"
+                       id="fullname"
+                       placeholder="Full Name"
+                       required>
+
+                <input type="text"
+                       id="address"
+                       placeholder="Address"
+                       required>
+
+                <input type="text"
+                       id="contact"
+                       placeholder="Contact Number"
+                       required>
+
+                <button type="submit" class="btn-primary">
+                    Save Resident
+                </button>
+
+            </form>
+
+        </div>
+
+        <br>
+
+        <!-- Residents Table -->
+        <div class="table-container">
+
+            <h2>Resident Records</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="residentTable">
+
+                    <tr>
+                        <td>R001</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>Zone 1</td>
+                        <td>09123456789</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+let residentCount = 2;
+
+document.getElementById("residentForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let fullname =
+        document.getElementById("fullname").value;
+
+    let address =
+        document.getElementById("address").value;
+
+    let contact =
+        document.getElementById("contact").value;
+
+    let table =
+        document.getElementById("residentTable");
+
+    let row = `
+        <tr>
+            <td>R00${residentCount}</td>
+            <td>${fullname}</td>
+            <td>${address}</td>
+            <td>${contact}</td>
+            <td>
+                <button onclick="editRow(this)">
+                    Edit
+                </button>
+
+                <button onclick="deleteRow(this)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    `;
+
+    table.innerHTML += row;
+
+    residentCount++;
+
+    document.getElementById("residentForm").reset();
+
+});
+
+function deleteRow(button){
+    button.parentElement.parentElement.remove();
+}
+
+function editRow(button){
+
+    let row =
+        button.parentElement.parentElement;
+
+    let name =
+        row.cells[1].innerText;
+
+    let address =
+        row.cells[2].innerText;
+
+    let contact =
+        row.cells[3].innerText;
+
+    document.getElementById("fullname").value = name;
+    document.getElementById("address").value = address;
+    document.getElementById("contact").value = contact;
+
+    row.remove();
+}
+
+function addResident(){
+    document.getElementById("fullname").focus();
+}
+
+</script>
+
+</body>
+</html>

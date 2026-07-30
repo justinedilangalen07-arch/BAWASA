@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAWASA - Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>BAWASA</h2>
+
+        <ul>
+            <li><a href="dashboard.html">🏠 Dashboard</a></li>
+            <li><a href="residents.html">👥 Residents</a></li>
+            <li><a href="consumers.html">💧 Water Consumers</a></li>
+            <li><a href="billing.html">🧾 Billing</a></li>
+            <li><a href="payments.html">💵 Payments</a></li>
+            <li><a href="reports.html">📊 Reports</a></li>
+            <li><a href="settings.html">⚙ Settings</a></li>
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>System Settings</h1>
+        </div>
+
+        <div class="card">
+
+            <h2>Water Billing Settings</h2>
+
+            <form id="settingsForm">
+
+                <label>Water Rate per Cubic Meter (₱)</label>
+                <input
+                    type="number"
+                    id="waterRate"
+                    value="25"
+                    required>
+
+                <label>Minimum Charge (₱)</label>
+                <input
+                    type="number"
+                    id="minimumCharge"
+                    value="150"
+                    required>
+
+                <label>Penalty Rate (%)</label>
+                <input
+                    type="number"
+                    id="penaltyRate"
+                    value="10"
+                    required>
+
+                <label>Due Days</label>
+                <input
+                    type="number"
+                    id="dueDays"
+                    value="30"
+                    required>
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+                    Save Settings
+                </button>
+
+            </form>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <h2>Current Settings</h2>
+
+            <p><strong>Water Rate:</strong> ₱<span id="rateDisplay">25</span>/m³</p>
+            <p><strong>Minimum Charge:</strong> ₱<span id="minimumDisplay">150</span></p>
+            <p><strong>Penalty Rate:</strong> <span id="penaltyDisplay">10</span>%</p>
+            <p><strong>Due Days:</strong> <span id="dueDisplay">30</span> Days</p>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+const settingsForm = document.getElementById("settingsForm");
+
+settingsForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const waterRate =
+        document.getElementById("waterRate").value;
+
+    const minimumCharge =
+        document.getElementById("minimumCharge").value;
+
+    const penaltyRate =
+        document.getElementById("penaltyRate").value;
+
+    const dueDays =
+        document.getElementById("dueDays").value;
+
+    // Save to Local Storage
+    localStorage.setItem("waterRate", waterRate);
+    localStorage.setItem("minimumCharge", minimumCharge);
+    localStorage.setItem("penaltyRate", penaltyRate);
+    localStorage.setItem("dueDays", dueDays);
+
+    loadSettings();
+
+    alert("Settings saved successfully!");
+
+});
+
+function loadSettings(){
+
+    document.getElementById("rateDisplay").textContent =
+        localStorage.getItem("waterRate") || 25;
+
+    document.getElementById("minimumDisplay").textContent =
+        localStorage.getItem("minimumCharge") || 150;
+
+    document.getElementById("penaltyDisplay").textContent =
+        localStorage.getItem("penaltyRate") || 10;
+
+    document.getElementById("dueDisplay").textContent =
+        localStorage.getItem("dueDays") || 30;
+}
+
+loadSettings();
+
+</script>
+
+</body>
+</html>

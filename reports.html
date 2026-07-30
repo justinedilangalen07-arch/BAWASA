@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAWASA Dashboard</title>
-
+    <title>BAWASA - Reports</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,18 +30,11 @@
     <!-- Main Content -->
     <main class="main-content">
 
-        <!-- Top Bar -->
         <div class="topbar">
-
-            <h1>Admin Dashboard</h1>
-
-            <button id="logoutBtn" class="logout-btn">
-                Logout
-            </button>
-
+            <h1>Reports</h1>
         </div>
 
-        <!-- Dashboard Cards -->
+        <!-- Summary Cards -->
         <div class="cards">
 
             <div class="card">
@@ -51,7 +43,7 @@
             </div>
 
             <div class="card">
-                <h3>Monthly Collection</h3>
+                <h3>Total Collection</h3>
                 <h2>₱185,000</h2>
             </div>
 
@@ -61,57 +53,49 @@
             </div>
 
             <div class="card">
-                <h3>Paid This Month</h3>
+                <h3>Paid Bills</h3>
                 <h2>475</h2>
             </div>
 
         </div>
 
-        <!-- Recent Payments -->
+        <!-- Monthly Collection Report -->
         <div class="table-container">
 
-            <h2>Recent Payments</h2>
+            <h2>Monthly Collection Report</h2>
 
             <table>
 
                 <thead>
                     <tr>
-                        <th>Receipt No.</th>
-                        <th>Account No.</th>
-                        <th>Consumer Name</th>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Status</th>
+                        <th>Month</th>
+                        <th>Total Bills</th>
+                        <th>Total Payments</th>
+                        <th>Collection Rate</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <tr>
-                        <td>RC001</td>
-                        <td>1001</td>
-                        <td>Juan Dela Cruz</td>
-                        <td>2026-07-30</td>
-                        <td>₱650</td>
-                        <td class="paid">Paid</td>
+                        <td>January</td>
+                        <td>₱150,000</td>
+                        <td>₱145,000</td>
+                        <td>96.67%</td>
                     </tr>
 
                     <tr>
-                        <td>RC002</td>
-                        <td>1002</td>
-                        <td>Maria Santos</td>
-                        <td>2026-07-29</td>
-                        <td>₱780</td>
-                        <td class="paid">Paid</td>
+                        <td>February</td>
+                        <td>₱160,000</td>
+                        <td>₱155,000</td>
+                        <td>96.88%</td>
                     </tr>
 
                     <tr>
-                        <td>RC003</td>
-                        <td>1003</td>
-                        <td>Pedro Reyes</td>
-                        <td>2026-07-28</td>
-                        <td>₱500</td>
-                        <td class="pending">Pending</td>
+                        <td>March</td>
+                        <td>₱170,000</td>
+                        <td>₱165,000</td>
+                        <td>97.06%</td>
                     </tr>
 
                 </tbody>
@@ -120,20 +104,39 @@
 
         </div>
 
+        <br>
+
+        <!-- Export Buttons -->
+        <div class="card">
+
+            <h2>Export Reports</h2>
+
+            <br>
+
+            <button class="btn-primary" onclick="exportPDF()">
+                Export PDF
+            </button>
+
+            <button class="btn-primary" onclick="exportExcel()">
+                Export Excel
+            </button>
+
+        </div>
+
     </main>
 
 </div>
 
 <script>
-    const logoutBtn = document.getElementById("logoutBtn");
 
-    logoutBtn.addEventListener("click", () => {
+function exportPDF() {
+    alert("PDF Export Feature Coming Soon!");
+}
 
-        localStorage.removeItem("isLoggedIn");
+function exportExcel() {
+    alert("Excel Export Feature Coming Soon!");
+}
 
-        window.location.href = "index.html";
-
-    });
 </script>
 
 </body>

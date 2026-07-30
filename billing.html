@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAWASA - Water Consumers</title>
+    <title>BAWASA - Billing</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,25 +31,15 @@
     <main class="main-content">
 
         <div class="topbar">
-            <h1>Water Consumers</h1>
-
-            <button class="btn-primary" onclick="focusForm()">
-                + Add Consumer
-            </button>
+            <h1>Billing Management</h1>
         </div>
 
-        <!-- Consumer Form -->
+        <!-- Billing Form -->
         <div class="card">
 
-            <h2>Consumer Information</h2>
+            <h2>Create Bill</h2>
 
-            <form id="consumerForm">
-
-                <input
-                    type="text"
-                    id="consumerName"
-                    placeholder="Consumer Name"
-                    required>
+            <form id="billingForm">
 
                 <input
                     type="text"
@@ -59,18 +49,26 @@
 
                 <input
                     type="text"
-                    id="meterNo"
-                    placeholder="Meter Number"
+                    id="consumerName"
+                    placeholder="Consumer Name"
                     required>
 
-                <select id="status" required>
-                    <option value="">Select Status</option>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
+                <input
+                    type="number"
+                    id="previousReading"
+                    placeholder="Previous Reading"
+                    required>
 
-                <button type="submit" class="btn-primary">
-                    Save Consumer
+                <input
+                    type="number"
+                    id="currentReading"
+                    placeholder="Current Reading"
+                    required>
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+                    Generate Bill
                 </button>
 
             </form>
@@ -79,35 +77,37 @@
 
         <br>
 
-        <!-- Consumers Table -->
+        <!-- Billing Table -->
         <div class="table-container">
 
-            <h2>Consumer Records</h2>
+            <h2>Billing Records</h2>
 
             <table>
 
                 <thead>
                     <tr>
                         <th>Account No.</th>
-                        <th>Consumer Name</th>
-                        <th>Meter No.</th>
+                        <th>Consumer</th>
+                        <th>Previous</th>
+                        <th>Current</th>
+                        <th>Consumption</th>
+                        <th>Bill Amount</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
 
-                <tbody id="consumerTable">
+                <tbody id="billingTable">
 
                     <tr>
                         <td>1001</td>
                         <td>Juan Dela Cruz</td>
-                        <td>MTR-001</td>
-                        <td>Active</td>
+                        <td>120</td>
+                        <td>140</td>
+                        <td>20 m³</td>
+                        <td>₱500</td>
+                        <td class="pending">Pending</td>
                         <td>
-                            <button onclick="editRow(this)">
-                                Edit
-                            </button>
-
                             <button onclick="deleteRow(this)">
                                 Delete
                             </button>
@@ -126,7 +126,9 @@
 
 <script>
 
-document.getElementById("consumerForm")
+const WATER_RATE = 25;
+
+document.getElementById("billingForm")
 .addEventListener("submit", function(e){
 
     e.preventDefault();
@@ -137,26 +139,31 @@ document.getElementById("consumerForm")
     let consumerName =
         document.getElementById("consumerName").value;
 
-    let meterNo =
-        document.getElementById("meterNo").value;
+    let previous =
+        parseFloat(document.getElementById("previousReading").value);
 
-    let status =
-        document.getElementById("status").value;
+    let current =
+        parseFloat(document.getElementById("currentReading").value);
 
-    let table =
-        document.getElementById("consumerTable");
+    if(current < previous){
+        alert("Current reading cannot be less than previous reading.");
+        return;
+    }
+
+    let consumption = current - previous;
+
+    let billAmount = consumption * WATER_RATE;
 
     let row = `
         <tr>
             <td>${accountNo}</td>
             <td>${consumerName}</td>
-            <td>${meterNo}</td>
-            <td>${status}</td>
+            <td>${previous}</td>
+            <td>${current}</td>
+            <td>${consumption} m³</td>
+            <td>₱${billAmount.toFixed(2)}</td>
+            <td class="pending">Pending</td>
             <td>
-                <button onclick="editRow(this)">
-                    Edit
-                </button>
-
                 <button onclick="deleteRow(this)">
                     Delete
                 </button>
@@ -164,38 +171,15 @@ document.getElementById("consumerForm")
         </tr>
     `;
 
-    table.innerHTML += row;
+    document.getElementById("billingTable")
+    .insertAdjacentHTML("beforeend", row);
 
-    document.getElementById("consumerForm").reset();
+    document.getElementById("billingForm").reset();
 
 });
 
 function deleteRow(button){
     button.parentElement.parentElement.remove();
-}
-
-function editRow(button){
-
-    let row =
-        button.parentElement.parentElement;
-
-    document.getElementById("accountNo").value =
-        row.cells[0].innerText;
-
-    document.getElementById("consumerName").value =
-        row.cells[1].innerText;
-
-    document.getElementById("meterNo").value =
-        row.cells[2].innerText;
-
-    document.getElementById("status").value =
-        row.cells[3].innerText;
-
-    row.remove();
-}
-
-function focusForm(){
-    document.getElementById("consumerName").focus();
 }
 
 </script>

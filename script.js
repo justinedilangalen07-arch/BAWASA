@@ -1,113 +1,49 @@
-// ===============================
-// BAWASA Management System
-// script.js
-// ===============================
+// BAWASA Login System
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    // ===============================
-    // LOGIN PAGE
-    // ===============================
+document.addEventListener("DOMContentLoaded", () => {
 
     const loginForm = document.getElementById("loginForm");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const errorMessage = document.getElementById("errorMessage");
 
-    if (loginForm) {
+    loginForm.addEventListener("submit", function (e) {
 
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
-        const errorMessage = document.getElementById("errorMessage");
+        e.preventDefault();
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
 
         // Demo Admin Account
-        const ADMIN_USERNAME = "admin";
-        const ADMIN_PASSWORD = "admin123";
+        const adminUsername = "admin";
+        const adminPassword = "admin123";
 
-        loginForm.addEventListener("submit", function (event) {
+        if (
+            username === adminUsername &&
+            password === adminPassword
+        ) {
 
-            event.preventDefault();
-
-            const user = username.value.trim();
-            const pass = password.value.trim();
-
-            // Hide previous error
+            // Hide error message
             errorMessage.classList.add("hidden");
 
-            // Check empty fields
-            if (user === "" || pass === "") {
-                errorMessage.textContent = "Please enter your username and password.";
-                errorMessage.classList.remove("hidden");
-                return;
-            }
+            // Save login session
+            localStorage.setItem("isLoggedIn", "true");
 
-            // Validate login
-            if (user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
+            // Redirect to dashboard
+            window.location.href = "dashboard.html";
 
-                // Save login session
-                localStorage.setItem("loggedIn", "true");
-                localStorage.setItem("adminName", "Administrator");
+        } else {
 
-                alert("Login Successful!");
+            // Show error
+            errorMessage.classList.remove("hidden");
 
-                // Redirect to dashboard
-                window.location.href = "dashboard.html";
+            // Clear password
+            passwordInput.value = "";
 
-            } else {
-
-                errorMessage.textContent = "Invalid username or password.";
-                errorMessage.classList.remove("hidden");
-
-                password.value = "";
-                password.focus();
-
-            }
-
-        });
-
-    }
-
-    // ===============================
-    // DASHBOARD PAGE
-    // ===============================
-
-    if (window.location.pathname.includes("dashboard.html")) {
-
-        // Check login session
-        if (localStorage.getItem("loggedIn") !== "true") {
-            window.location.href = "index.html";
-            return;
+            // Focus password field
+            passwordInput.focus();
         }
 
-        // Display admin name
-        const adminName = document.getElementById("adminName");
-
-        if (adminName) {
-            adminName.textContent =
-                localStorage.getItem("adminName") || "Administrator";
-        }
-
-        // Logout Button
-        const logoutBtn = document.getElementById("logoutBtn");
-
-        if (logoutBtn) {
-
-            logoutBtn.addEventListener("click", function () {
-
-                const confirmLogout = confirm("Are you sure you want to logout?");
-
-                if (confirmLogout) {
-
-                    localStorage.removeItem("loggedIn");
-                    localStorage.removeItem("adminName");
-
-                    alert("Logged out successfully.");
-
-                    window.location.href = "index.html";
-
-                }
-
-            });
-
-        }
-
-    }
+    });
 
 });
